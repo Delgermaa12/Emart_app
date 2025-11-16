@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'ipoint_page.dart';
+import 'change_pass_settings.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
@@ -132,7 +133,16 @@ class MyPage extends StatelessWidget {
               onTap: () => showLanguageSelector(context),
               trailing: const Icon(Icons.arrow_drop_up_outlined),
             ),
-            buildListTile(Icons.key_outlined, "Нууц үг солих"),
+            buildListTile(
+              Icons.key_outlined,
+              "Нууц үг солих",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                );
+              },
+            ),
             buildListTile(Icons.list_alt_outlined, "Хэрэглэгчийн судалгаа"),
             buildListTile(Icons.lock_outline, "Гүйлгээний нууц үг"),
 

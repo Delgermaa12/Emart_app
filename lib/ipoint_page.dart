@@ -33,11 +33,10 @@ class IpointPage extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                // Emart card
                 ClipRRect(
                   borderRadius: BorderRadius.circular(24),
                   child: Image.asset(
-                    'images/emart_harcard.jpg',
+                    'assets/emart_harcard.jpg',
                     width: 200,
                     fit: BoxFit.cover,
                   ),

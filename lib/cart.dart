@@ -35,7 +35,7 @@ class EmptyCartPage extends StatelessWidget {
               children: [
                 Center( // 🟢 зураг төвд байрлана
                   child: Image.asset(
-                    'assets/empty_cart.jpeg', // таны зураг
+                    'assets/emart_cart.jpg', // таны зураг
                     width: 130,
                   ),
                 ),
