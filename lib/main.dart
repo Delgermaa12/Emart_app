@@ -1,7 +1,6 @@
-import 'package:emart_app/cart.dart';
+import 'package:emart_app/baraatai_sags.dart';
 import 'package:emart_app/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'ipoint_page.dart';
 import 'user_screen.dart';
 
@@ -36,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const Center(child: Text('Scan & Go', style: TextStyle(fontSize: 24))),
     const IpointPage(),
-    const EmptyCartPage(),
+    const CartPage(),
     const MyPage(),
   ];
 
@@ -46,9 +45,14 @@ class _MainScreenState extends State<MainScreen> {
       elevation: 0,
       title: Row(
         children: [
-          const Text('emart',
-              style: TextStyle(
-                  fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+          const Text(
+            'emart',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Container(
@@ -86,13 +90,27 @@ class _MainScreenState extends State<MainScreen> {
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CartPage()),
+            );
+            return;
+          }
+
           setState(() {
             _currentIndex = index;
           });
         },
         items: [
-          const BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Нүүр'),
-          const BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_outlined), label: 'Scan&Go'),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Нүүр',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code_scanner_outlined),
+            label: 'Scan&Go',
+          ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
               radius: 25,
@@ -101,8 +119,14 @@ class _MainScreenState extends State<MainScreen> {
             ),
             label: 'Ипойнт',
           ),
-          const BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: 'Сагс'),
-          const BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Миний'),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Сагс',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Миний',
+          ),
         ],
       ),
     );

@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmptyCartPage extends StatelessWidget {
@@ -55,4 +55,4 @@ class EmptyCartPage extends StatelessWidget {
       backgroundColor: Colors.white,
     );
   }
-}*/
+}
