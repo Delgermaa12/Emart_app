@@ -6,6 +6,8 @@ import 'login_page.dart';
 import 'register_page.dart';
 import 'auth_service.dart';
 import 'user_screen.dart';
+import 'baraatai_sags.dart'; // Add CartPage import
+import 'ipoint_page.dart';   // Add IpointPage import
 
 void main() => runApp(const EmartApp());
 
@@ -20,6 +22,7 @@ class EmartApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.amber[700],
         scaffoldBackgroundColor: const Color(0xFFF9F9F9),
+        useMaterial3: true,
       ),
       initialRoute: '/login',
       routes: {
@@ -27,7 +30,10 @@ class EmartApp extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/forgot': (context) => const ForgotPasswordPage(),
         '/home': (context) => const HomeScreen(),
-        '/myprofile': (context) => const MyPage(),
+        '/mypage': (context) => const MyPage(), // Changed from '/myprofile' to '/mypage'
+        '/cart': (context) => const CartPage(), // Add CartPage route
+        '/ipoint': (context) => const IpointPage(), // Add IpointPage route
+        // '/mainscreen': (context) => const MainScreen(), // Add MainScreen route if needed
       },
     );
   }
