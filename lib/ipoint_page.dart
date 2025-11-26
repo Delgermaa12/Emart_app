@@ -21,7 +21,6 @@ class IpointPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // ePoint logo
                 Text(
                   "ePoint",
                   style: GoogleFonts.poppins(
@@ -32,11 +31,10 @@ class IpointPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 20),
-
                 ClipRRect(
                   borderRadius: BorderRadius.circular(24),
                   child: Image.asset(
-                    'assets/emart_harcard.jpg',
+                    'images/emart_harcard.jpg',
                     width: 200,
                     fit: BoxFit.cover,
                   ),
@@ -52,8 +50,6 @@ class IpointPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 50),
-
-                // “Ипойнт Онооны Карт Холбох” товч
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -80,13 +76,11 @@ class IpointPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 12),
-
-                // “Шинээр Гишүүн Болох” товч
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const NewMemberPage()),
+                      MaterialPageRoute(builder: (context) => NewMemberPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -107,8 +101,6 @@ class IpointPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 30),
-
-                // eWallet хэсэг
                 Container(
                   width: 330,
                   padding: const EdgeInsets.all(16),
@@ -162,7 +154,7 @@ class IpointPage extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            "КРЕДИТ АВАХ",
+                            "КРЕДИТ КАРТ",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),

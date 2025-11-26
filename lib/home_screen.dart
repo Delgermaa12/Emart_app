@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'home_content.dart';
+import 'ipoint_page.dart';
 import 'user_model.dart';
-
-class HomeScreen extends StatefulWidget {  // Changed to StatefulWidget
+import 'user_screen.dart' as userScreen; // MyPage-г alias-тай import хийж байна
+import 'cart.dart';
+import 'baraatai_sags.dart';
+class HomeScreen extends StatefulWidget {
   final User? user;
   const HomeScreen({super.key, this.user});
 
@@ -11,19 +14,27 @@ class HomeScreen extends StatefulWidget {  // Changed to StatefulWidget
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;  // Added currentIndex state
+  int _currentIndex = 0;
+
+  List<Widget> get _pages => [
+    HomeContent(user: widget.user),
+    Center(child: Text("Scan & Go Page")),
+    IpointPage(),
+    CartPage(),
+    userScreen.MyPage(), // ⚡ энд user дамжуулж байна
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _buildAppBar(context),
-      body: HomeContent(user: widget.user),  // Use widget.user
-      bottomNavigationBar: _buildBottomNavigationBar(context),
+      appBar: _buildAppBar(),
+      body: _pages[_currentIndex],
+      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
-  AppBar _buildAppBar(BuildContext context) {
+  AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: const Color(0xFFFFCC00),
       elevation: 0,
@@ -60,11 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  if (widget.user != null)  // Use widget.user
+                  if (widget.user != null)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
-                        widget.user!.name.split(' ').first,  // Use widget.user
+                        widget.user!.name.split(' ').first,
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -84,14 +95,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  BottomNavigationBar _buildBottomNavigationBar(BuildContext context) {
+  BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
-      currentIndex: _currentIndex,  // Use the state variable
+      currentIndex: _currentIndex,
       selectedItemColor: const Color(0xFFFFCC00),
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
-        _onBottomNavItemTapped(index, context);
+        setState(() {
+          _currentIndex = index;
+        });
       },
       items: const [
         BottomNavigationBarItem(
@@ -120,20 +133,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     );
-  }
-
-  void _onBottomNavItemTapped(int index, BuildContext context) {
-    if (index == 4) {
-      // Navigate to MyPage using named route
-      Navigator.pushNamed(
-        context,
-        '/mypage',  // Changed from '/myprofile' to '/mypage' to match main.dart
-        arguments: widget.user,  // Use widget.user
-      );
-    } else {
-      setState(() {
-        _currentIndex = index;
-      });
-    }
   }
 }
