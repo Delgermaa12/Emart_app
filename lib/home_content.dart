@@ -1,11 +1,10 @@
-// lib/home_content.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'star_rating.dart';
 import 'product_details.dart';
 import 'user_model.dart';
 import 'category_products_page.dart';
-import 'event_page.dart' as event_page; // Renamed import to avoid conflict
+import 'event_page.dart' as event_page;
 import 'starlink_page.dart';
 import 'flash_sale_page.dart';
 import 'new_year_page.dart';
@@ -21,6 +20,97 @@ class HomeContent extends StatefulWidget {
 
 class _HomeContentState extends State<HomeContent> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Sample product data
+  final List<Map<String, dynamic>> newProducts = [
+    {
+      'name': 'Нүүрний суурь тос',
+      'price': '68,000₮',
+      'rating': 4,
+      'imagePath': 'https://via.placeholder.com/150/FFCC00/FFFFFF?text=Тос',
+      'brand': 'Lhamour | 30мл',
+    },
+    {
+      'name': 'Биеийн скраб кофе',
+      'price': '42,000₮',
+      'rating': 5,
+      'imagePath': 'https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Скраб',
+      'brand': 'Lhamour | 300гр',
+    },
+    {
+      'name': 'Зөөлрүүлэгч тос',
+      'price': '39,900₮',
+      'rating': 4,
+      'imagePath': 'https://via.placeholder.com/150/4ECDC4/FFFFFF?text=Тос',
+      'brand': 'Keelt | 200гр',
+    },
+  ];
+
+  final List<Map<String, dynamic>> discountedProducts = [
+    {
+      'name': 'Чихэвч',
+      'price': '75,000₮',
+      'originalPrice': '120,000₮',
+      'rating': 4,
+      'imagePath': 'https://via.placeholder.com/150/9966CC/FFFFFF?text=Чихэвч',
+      'brand': 'Sony | Wireless',
+    },
+    {
+      'name': 'Ухаалаг гар утас',
+      'price': '1,150,000₮',
+      'originalPrice': '1,500,000₮',
+      'rating': 5,
+      'imagePath': 'https://via.placeholder.com/150/6699CC/FFFFFF?text=Утас',
+      'brand': 'Samsung | 128GB',
+    },
+    {
+      'name': 'Камер',
+      'price': '680,000₮',
+      'originalPrice': '890,000₮',
+      'rating': 5,
+      'imagePath': 'https://via.placeholder.com/150/66CC99/FFFFFF?text=Камер',
+      'brand': 'Canon | EOS',
+    },
+  ];
+
+  final List<Map<String, dynamic>> mainProducts = [
+    {
+      'name': 'Серум',
+      'price': '50,000₮',
+      'rating': 4,
+      'imagePath': 'https://via.placeholder.com/150/45B7D1/FFFFFF?text=Серум',
+    },
+    {
+      'name': 'Тоглоом',
+      'price': '22,000₮',
+      'rating': 5,
+      'imagePath': 'https://via.placeholder.com/150/96CEB4/FFFFFF?text=Тоглоом',
+    },
+    {
+      'name': 'Баннын бөмбөлөг',
+      'price': '5,000₮',
+      'rating': 3,
+      'imagePath': 'https://via.placeholder.com/150/FECA57/FFFFFF?text=Бөмбөлөг',
+    },
+    {
+      'name': 'Чихмэл нохой',
+      'price': '50,000₮',
+      'rating': 4,
+      'imagePath': 'https://via.placeholder.com/150/FF9FF3/FFFFFF?text=Нохой',
+    },
+    {
+      'name': 'Бамарууш чихмэл',
+      'price': '45,000₮',
+      'rating': 5,
+      'imagePath': 'https://via.placeholder.com/150/54A0FF/FFFFFF?text=Бамарууш',
+    },
+    {
+      'name': 'Ном',
+      'price': '25,000₮',
+      'rating': 2,
+      'imagePath': 'https://via.placeholder.com/150/5F27CD/FFFFFF?text=Ном',
+    },
+  ];
 
   // Helper method for menu buttons
   Widget _buildMenuButton(BuildContext context, String text, Widget page) {
@@ -88,49 +178,42 @@ class _HomeContentState extends State<HomeContent> {
                     child: Row(
                       children: [
                         const SizedBox(width: 16),
-                        // ЭВЕНТ - Using renamed import
                         _buildMenuButton(
                           context,
                           "ЭВЕНТ",
-                          const event_page.EventPage(), // Fixed: using renamed import
+                          const event_page.EventPage(),
                         ),
-                        // STARLINK
                         _buildMenuButton(
                           context,
                           "STARLINK",
                           const StarlinkPage(),
                         ),
-                        // ШУУРХАЙ
                         _buildMenuButton(
                           context,
                           "ШУУРХАЙ",
                           const FlashSalePage(),
                         ),
-                        // ШИНЭ БАРАА
                         _buildMenuButton(
                           context,
                           "ШИНЭ БАРАА",
-                          CategoryProductsPage( // Fixed: now properly recognized
+                          CategoryProductsPage(
                             categoryName: "ШИНЭ БАРАА",
                             categoryIcon: Icons.new_releases,
                           ),
                         ),
-                        // ХЯМДРАЛ
                         _buildMenuButton(
                           context,
                           "ХЯМДРАЛ",
-                          CategoryProductsPage( // Fixed: now properly recognized
+                          CategoryProductsPage(
                             categoryName: "ХЯМДРАЛТАЙ БҮТЭЭГДЭХҮҮН",
                             categoryIcon: Icons.local_offer,
                           ),
                         ),
-                        // ШИНЭ ЖИЛ
                         _buildMenuButton(
                           context,
                           "ШИНЭ ЖИЛ",
                           const NewYearPage(),
                         ),
-                        // И-ЖОР
                         _buildMenuButton(
                           context,
                           "И-ЖОР",
@@ -259,30 +342,34 @@ class _HomeContentState extends State<HomeContent> {
           // New Products Horizontal List
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 250,
-              child: ListView(
+              height: 280, // Increased height to accommodate wider cards
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 15),
-                children: const [
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FFCC00/FFFFFF?text=Тос",
-                    title: "Нүүрний суурь тос",
-                    brand: "Lhamour | 30мл",
-                    price: "68,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Скраб",
-                    title: "Биеийн скраб кофе",
-                    brand: "Lhamour | 300гр",
-                    price: "42,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/4ECDC4/FFFFFF?text=Тос",
-                    title: "Зөөлрүүлэгч тос",
-                    brand: "Keelt | 200гр",
-                    price: "39,900₮",
-                  ),
-                ],
+                itemCount: newProducts.length,
+                itemBuilder: (context, index) {
+                  final product = newProducts[index];
+                  return ProductCard(
+                    imageUrl: product['imagePath'],
+                    title: product['name'],
+                    brand: product['brand'],
+                    price: product['price'],
+                    rating: product['rating'],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailsPage(
+                            name: product['name'],
+                            price: product['price'],
+                            rating: product['rating'],
+                            imagePath: product['imagePath'],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),
@@ -332,249 +419,35 @@ class _HomeContentState extends State<HomeContent> {
           // Discounted Products Horizontal List
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 250,
-              child: ListView(
+              height: 280, // Increased height to accommodate wider cards
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 15),
-                children: const [
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FFCC00/FFFFFF?text=Тос",
-                    title: "Нүүрний суурь тос",
-                    brand: "Lhamour | 30мл",
-                    price: "68,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Скраб",
-                    title: "Биеийн скраб кофе",
-                    brand: "Lhamour | 300гр",
-                    price: "42,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/4ECDC4/FFFFFF?text=Тос",
-                    title: "Зөөлрүүлэгч тос",
-                    brand: "Keelt | 200гр",
-                    price: "39,900₮",
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // Free Product Section
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "НЭГИЙГ ҮНЭГҮЙ АВААРАЙ",
-                        style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
+                itemCount: discountedProducts.length,
+                itemBuilder: (context, index) {
+                  final product = discountedProducts[index];
+                  return ProductCard(
+                    imageUrl: product['imagePath'],
+                    title: product['name'],
+                    brand: product['brand'],
+                    price: product['price'],
+                    rating: product['rating'],
+                    originalPrice: product['originalPrice'],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailsPage(
+                            name: product['name'],
+                            price: product['price'],
+                            rating: product['rating'],
+                            imagePath: product['imagePath'],
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CategoryProductsPage(
-                                categoryName: "НЭГИЙГ ҮНЭГҮЙ АВААРАЙ",
-                                categoryIcon: Icons.card_giftcard,
-                              ),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios, size: 18),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-              ],
-            ),
-          ),
-
-          // Free Product Horizontal List
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 250,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.only(left: 15),
-                children: const [
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FFCC00/FFFFFF?text=Тос",
-                    title: "Нүүрний суурь тос",
-                    brand: "Lhamour | 30мл",
-                    price: "68,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Скраб",
-                    title: "Биеийн скраб кофе",
-                    brand: "Lhamour | 300гр",
-                    price: "42,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/4ECDC4/FFFFFF?text=Тос",
-                    title: "Зөөлрүүлэгч тос",
-                    brand: "Keelt | 200гр",
-                    price: "39,900₮",
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // Bundle Discount Section
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "ХАМТАД НЬ АВБАЛ ИЛҮҮ ХЯМД",
-                        style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CategoryProductsPage(
-                                categoryName: "ХАМТАД НЬ АВБАЛ ИЛҮҮ ХЯМД",
-                                categoryIcon: Icons.shopping_basket,
-                              ),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios, size: 18),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-              ],
-            ),
-          ),
-
-          // Bundle Discount Horizontal List
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 250,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.only(left: 15),
-                children: const [
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FFCC00/FFFFFF?text=Тос",
-                    title: "Нүүрний суурь тос",
-                    brand: "Lhamour | 30мл",
-                    price: "68,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Скраб",
-                    title: "Биеийн скраб кофе",
-                    brand: "Lhamour | 300гр",
-                    price: "42,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/4ECDC4/FFFFFF?text=Тос",
-                    title: "Зөөлрүүлэгч тос",
-                    brand: "Keelt | 200гр",
-                    price: "39,900₮",
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // Recently Viewed Section
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "ТАНЫ СҮҮЛД ҮЗСЭН БАРАА",
-                        style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CategoryProductsPage(
-                                categoryName: "ТАНЫ СҮҮЛД ҮЗСЭН БАРАА",
-                                categoryIcon: Icons.history,
-                              ),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios, size: 18),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-              ],
-            ),
-          ),
-
-          // Recently Viewed Horizontal List
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 250,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.only(left: 15),
-                children: const [
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FFCC00/FFFFFF?text=Тос",
-                    title: "Нүүрний суурь тос",
-                    brand: "Lhamour | 30мл",
-                    price: "68,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Скраб",
-                    title: "Биеийн скраб кофе",
-                    brand: "Lhamour | 300гр",
-                    price: "42,000₮",
-                  ),
-                  ProductCard(
-                    imageUrl: "https://via.placeholder.com/150/4ECDC4/FFFFFF?text=Тос",
-                    title: "Зөөлрүүлэгч тос",
-                    brand: "Keelt | 200гр",
-                    price: "39,900₮",
-                  ),
-                ],
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),
@@ -586,7 +459,6 @@ class _HomeContentState extends State<HomeContent> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title with arrow
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: Row(
@@ -622,22 +494,23 @@ class _HomeContentState extends State<HomeContent> {
                   // Grid
                   LayoutBuilder(
                     builder: (context, gridConstraints) {
-                      final crossAxisCount = gridConstraints.maxWidth < 600 ? 2 : 4;
+                      final crossAxisCount = gridConstraints.maxWidth < 600 ? 2 : 3; // Reduced from 4 to 3 for wider cards
                       return GridView.count(
                         crossAxisCount: crossAxisCount,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.85,
-                        children: [
-                          _buildProduct(context, "Серум", "₮50,000", 4, "https://via.placeholder.com/150/45B7D1/FFFFFF?text=Серум"),
-                          _buildProduct(context, "Тоглоом", "₮22,000", 5, "https://via.placeholder.com/150/96CEB4/FFFFFF?text=Тоглоом"),
-                          _buildProduct(context, "Баннын бөмбөлөг", "₮5,000", 3, "https://via.placeholder.com/150/FECA57/FFFFFF?text=Бөмбөлөг"),
-                          _buildProduct(context, "Чихмэл нохой", "₮50,000", 4, "https://via.placeholder.com/150/FF9FF3/FFFFFF?text=Нохой"),
-                          _buildProduct(context, "Бамарууш чихмэл", "₮45,000", 5, "https://via.placeholder.com/150/54A0FF/FFFFFF?text=Бамарууш"),
-                          _buildProduct(context, "Ном", "₮25,000", 2, "https://via.placeholder.com/150/5F27CD/FFFFFF?text=Ном"),
-                        ],
+                        mainAxisSpacing: 16, // Increased spacing
+                        crossAxisSpacing: 16, // Increased spacing
+                        childAspectRatio: 0.75, // Adjusted for wider cards
+                        children: mainProducts.map((product) {
+                          return _buildProduct(
+                            context,
+                            product['name'],
+                            product['price'],
+                            product['rating'],
+                            product['imagePath'],
+                          );
+                        }).toList(),
                       );
                     },
                   ),
@@ -650,7 +523,7 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 
-  // Build categories drawer
+  // Build categories drawer (keep the existing implementation)
   Widget _buildCategoriesDrawer(BuildContext context) {
     final List<Map<String, dynamic>> categories = [
       {"name": "Жимс, хүнсний ногоо", "icon": Icons.local_grocery_store},
@@ -675,7 +548,6 @@ class _HomeContentState extends State<HomeContent> {
       backgroundColor: Colors.white,
       child: Column(
         children: [
-          // Header
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -703,7 +575,6 @@ class _HomeContentState extends State<HomeContent> {
               ],
             ),
           ),
-          // Categories List
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -756,7 +627,6 @@ class _HomeContentState extends State<HomeContent> {
               },
             ),
           ),
-          // Footer
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -791,7 +661,7 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 
-  // Product card widget
+  // Product card widget - Updated with wider layout
   Widget _buildProduct(
       BuildContext context,
       String name,
@@ -817,12 +687,19 @@ class _HomeContentState extends State<HomeContent> {
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Container(
+          width: double.infinity, // Take full available width
           padding: const EdgeInsets.all(12),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 3,
+              // Image section
+              Container(
+                height: 120,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[200],
+                ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
@@ -863,30 +740,34 @@ class _HomeContentState extends State<HomeContent> {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
+
+              // Product details
               Expanded(
-                flex: 2,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       name,
                       style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold, height: 1.2),
-                      textAlign: TextAlign.center,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        height: 1.3,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 6),
                     Text(
                       price,
                       style: TextStyle(
                         color: Colors.amber[700],
-                        fontSize: 15,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 6),
                     StarRating(count: rating),
                   ],
                 ),
@@ -952,6 +833,9 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String brand;
   final String price;
+  final int rating;
+  final String? originalPrice;
+  final VoidCallback onTap;
 
   const ProductCard({
     super.key,
@@ -959,35 +843,38 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.brand,
     required this.price,
+    required this.rating,
+    this.originalPrice,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Add navigation to product details if needed
-      },
+      onTap: onTap,
       child: Container(
-        width: 160,
+        width: 180, // Increased from 160 to 180 for wider cards
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.grey.shade300),
+          color: Colors.white,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Image section
             ClipRRect(
               borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
               child: Image.network(
                 imageUrl,
-                height: 120,
+                height: 140, // Slightly increased height
                 width: double.infinity,
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
                   return Container(
-                    height: 120,
+                    height: 140,
                     color: Colors.grey[200],
                     child: Center(
                       child: CircularProgressIndicator(
@@ -999,7 +886,7 @@ class ProductCard extends StatelessWidget {
                   );
                 },
                 errorBuilder: (context, error, stackTrace) => Container(
-                  height: 120,
+                  height: 140,
                   color: Colors.grey[200],
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1016,8 +903,10 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
+
+            // Content section with more padding
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(12), // Increased padding
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1026,24 +915,53 @@ class ProductCard extends StatelessWidget {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      height: 1.3,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 6),
                   Text(
                     brand,
                     style: const TextStyle(color: Colors.grey, fontSize: 12),
                   ),
+                  const SizedBox(height: 6),
+                  StarRating(count: rating),
                   const SizedBox(height: 8),
-                  Text(
-                    price,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+
+                  // Price section with better layout
+                  if (originalPrice != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          price,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          originalPrice!,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),

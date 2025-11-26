@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'star_rating.dart';
+import 'product_details.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({super.key});
@@ -31,7 +32,7 @@ class EventPage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 image: const DecorationImage(
-                  image: AssetImage("assets/images/product4.png"),
+                  image: AssetImage("assets/images/event1.jpeg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -86,7 +87,7 @@ class EventPage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 image: const DecorationImage(
-                  image: AssetImage("assets/images/product3.png"),
+                  image: AssetImage("assets/images/event2.jpeg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -108,14 +109,14 @@ class EventPage extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Products Grid using the same products from CategoryProductsPage
-            _buildEventProductsGrid(),
+            _buildEventProductsGrid(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildEventProductsGrid() {
+  Widget _buildEventProductsGrid(BuildContext context) {
     // Using the same products from CategoryProductsPage with local images
     final List<Map<String, dynamic>> products = [
       {
@@ -123,48 +124,56 @@ class EventPage extends StatelessWidget {
         'price': '₮5,000',
         'rating': 4,
         'image': 'assets/images/products/apple.jpg',
+        'brand': 'Монгол алим',
       },
       {
         'name': 'Банан',
         'price': '₮3,500',
         'rating': 5,
         'image': 'assets/images/products/banana.jpg',
+        'brand': 'Экваторын банан',
       },
       {
         'name': 'Улаан лооль',
         'price': '₮4,200',
         'rating': 4,
         'image': 'assets/images/products/tomato.jpg',
+        'brand': 'Шинэхэн лооль',
       },
       {
         'name': 'Төмс',
         'price': '₮2,800',
         'rating': 3,
         'image': 'assets/images/products/potato.jpg',
+        'brand': 'Монгол төмс',
       },
       {
         'name': 'Сонгино',
         'price': '₮1,900',
         'rating': 4,
         'image': 'assets/images/products/onion.jpg',
+        'brand': 'Ногоон сонгино',
       },
       {
         'name': 'Сармис',
         'price': '₮3,200',
         'rating': 5,
         'image': 'assets/images/products/garlic.jpg',
+        'brand': 'Цагаан сармис',
       },
       {
         'name': 'Хүрэн манжин',
         'price': '₮4,500',
         'rating': 4,
         'image': 'assets/images/products/cabbage.jpg',
+        'brand': 'Шинэ манжин',
       },
       {
         'name': 'Гүзээлзгэнэ',
         'price': '₮6,800',
         'rating': 5,
         'image': 'assets/images/products/strawberry.jpg',
+        'brand': 'Улаан гүзээлзгэнэ',
       },
     ];
 
@@ -204,6 +213,17 @@ class EventPage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Navigate to product details page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(
+              name: name,
+              price: price,
+              rating: rating,
+              imagePath: imagePath,
+            ),
+          ),
+        );
       },
       child: Card(
         elevation: 2,

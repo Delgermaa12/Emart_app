@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'star_rating.dart';
+import 'product_details.dart';
 
 class CategoryProductsPage extends StatelessWidget {
   final String categoryName;
@@ -44,48 +45,84 @@ class CategoryProductsPage extends StatelessWidget {
         'price': '₮5,000',
         'rating': 4,
         'image': 'https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Алим',
+        'brand': 'Монгол алим',
       },
       {
         'name': 'Банан',
         'price': '₮3,500',
         'rating': 5,
         'image': 'https://via.placeholder.com/150/FECA57/FFFFFF?text=Банан',
+        'brand': 'Экваторын банан',
       },
       {
         'name': 'Улаан лооль',
         'price': '₮4,200',
         'rating': 4,
         'image': 'https://via.placeholder.com/150/FF9FF3/FFFFFF?text=Лооль',
+        'brand': 'Шинэхэн лооль',
       },
       {
         'name': 'Төмс',
         'price': '₮2,800',
         'rating': 3,
         'image': 'https://via.placeholder.com/150/54A0FF/FFFFFF?text=Төмс',
+        'brand': 'Монгол төмс',
       },
       {
         'name': 'Сонгино',
         'price': '₮1,900',
         'rating': 4,
         'image': 'https://via.placeholder.com/150/5F27CD/FFFFFF?text=Сонгино',
+        'brand': 'Ногоон сонгино',
       },
       {
         'name': 'Сармис',
         'price': '₮3,200',
         'rating': 5,
         'image': 'https://via.placeholder.com/150/00D2D3/FFFFFF?text=Сармис',
+        'brand': 'Цагаан сармис',
       },
       {
         'name': 'Хүрэн манжин',
         'price': '₮4,500',
         'rating': 4,
         'image': 'https://via.placeholder.com/150/FF9F43/FFFFFF?text=Манжин',
+        'brand': 'Шинэ манжин',
       },
       {
         'name': 'Гүзээлзгэнэ',
         'price': '₮6,800',
         'rating': 5,
         'image': 'https://via.placeholder.com/150/EE5253/FFFFFF?text=Гүзээлзгэнэ',
+        'brand': 'Улаан гүзээлзгэнэ',
+      },
+      {
+        'name': 'Жүрж',
+        'price': '₮7,500',
+        'rating': 4,
+        'image': 'https://via.placeholder.com/150/10AC84/FFFFFF?text=Жүрж',
+        'brand': 'Мандарин жүрж',
+      },
+      {
+        'name': 'Лийр',
+        'price': '₮8,200',
+        'rating': 5,
+        'image': 'https://via.placeholder.com/150/FF9F43/FFFFFF?text=Лийр',
+        'brand': 'Шар лийр',
+      },
+      {
+        'name': 'Чихэр',
+        'price': '₮9,000',
+        'rating': 4,
+        'image': 'https://via.placeholder.com/150/FF6B6B/FFFFFF?text=Чихэр',
+        'brand': 'Улаан чихэр',
+      },
+      {
+        'name': 'Интоор',
+        'price': '₮12,000',
+        'rating': 5,
+        'image': 'https://via.placeholder.com/150/5F27CD/FFFFFF?text=Интоор',
+        'brand': 'Ногоон интоор',
       },
     ];
 
@@ -123,6 +160,17 @@ class CategoryProductsPage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Navigate to product details page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(
+              name: name,
+              price: price,
+              rating: rating,
+              imagePath: imageUrl,
+            ),
+          ),
+        );
       },
       child: Card(
         elevation: 2,

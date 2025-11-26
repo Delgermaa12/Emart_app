@@ -1,4 +1,3 @@
-// lib/home_screen.dart
 import 'package:flutter/material.dart';
 import 'home_content.dart';
 import 'user_model.dart';

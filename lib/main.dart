@@ -6,8 +6,8 @@ import 'login_page.dart';
 import 'register_page.dart';
 import 'auth_service.dart';
 import 'user_screen.dart';
-import 'baraatai_sags.dart'; // Add CartPage import
-import 'ipoint_page.dart';   // Add IpointPage import
+import 'baraatai_sags.dart';
+import 'ipoint_page.dart';
 
 void main() => runApp(const EmartApp());
 

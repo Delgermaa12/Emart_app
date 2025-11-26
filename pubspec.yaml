@@ -64,7 +64,18 @@ flutter:
     - assets/bar.jpg
     - assets/empty_cart.jpeg
     - assets/tos.jpg
-
+    - assets/images/event1.jpeg
+    - assets/images/event2.jpeg
+    - assets/images/starlink.jpeg
+    - assets/images/starlink1.jpeg
+    - assets/images/starlink2.jpeg
+    - assets/images/starlink3.jpeg
+    - assets/images/shuurhai1.jpeg
+    - assets/images/shuurhai2.jpeg
+    - assets/images/shinejil1.jpeg
+    - assets/images/ejor2.jpeg
+    - assets/images/ejor3.jpeg
+    - assets/images/ejor4.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

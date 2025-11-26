@@ -1,4 +1,4 @@
-// lib/register_page.dart
+
 import 'package:flutter/material.dart';
 import 'user_model.dart';
 import 'auth_service.dart';
