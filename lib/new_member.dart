@@ -49,8 +49,6 @@ class _NewMemberPageState extends State<NewMemberPage> {
             ),
 
             const SizedBox(height: 20),
-
-            // ҮЙЛЧИЛГЭЭНИЙ ГЭРЭЭ гарчиг (зүүн талд)
             Text(
               "ҮЙЛЧИЛГЭЭНИЙ ГЭРЭЭ",
               style: GoogleFonts.notoSans(
@@ -62,8 +60,6 @@ class _NewMemberPageState extends State<NewMemberPage> {
             ),
 
             const SizedBox(height: 20),
-
-            // Гэрээний текст — хар цэгтэй жагсаалт маягаар
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -96,8 +92,6 @@ class _NewMemberPageState extends State<NewMemberPage> {
             ),
 
             const SizedBox(height: 20),
-
-            // Checkbox хэсэг
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -126,13 +120,10 @@ class _NewMemberPageState extends State<NewMemberPage> {
             ),
 
             const SizedBox(height: 25),
-
-            // Button
             Center(
               child: ElevatedButton(
                 onPressed: isAgreed
                     ? () {
-                  // SnackBar гаргах
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
@@ -166,7 +157,6 @@ class _NewMemberPageState extends State<NewMemberPage> {
   }
 }
 
-// Хар цэг бүхий гэрээний мөр бүр
 class _AgreementBullet extends StatelessWidget {
   final String text;
   const _AgreementBullet({required this.text});
