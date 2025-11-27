@@ -5,6 +5,7 @@ import 'user_model.dart';
 import 'user_screen.dart' as userScreen; // MyPage-г alias-тай import хийж байна
 import 'cart.dart';
 import 'baraatai_sags.dart';
+import 'auth_service.dart';
 class HomeScreen extends StatefulWidget {
   final User? user;
   const HomeScreen({super.key, this.user});
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Center(child: Text("Scan & Go Page")),
     IpointPage(),
     CartPage(),
-    userScreen.MyPage(), // ⚡ энд user дамжуулж байна
+    userScreen.MyPage(user: AuthService().currentUser!),
   ];
 
   @override

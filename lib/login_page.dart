@@ -1,3 +1,4 @@
+import 'package:emart_app/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'user_model.dart';
 import 'auth_service.dart';
@@ -17,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
   String _errorMessage = '';
+
 
   void _login() async {
     if (!formKey.currentState!.validate()) return;
@@ -46,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             (route) => false, // This removes ALL previous routes
         arguments: authService.currentUser,
       );
+
     } else {
       setState(() {
         _errorMessage = 'И-мэйл эсвэл нууц үг буруу байна';

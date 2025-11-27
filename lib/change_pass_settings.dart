@@ -12,7 +12,7 @@ class SettingsScreen extends StatelessWidget {
         title: const Text("Тохиргоо"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: ()=>Navigator.pop(context),
         ),
       ),
       body: Column(

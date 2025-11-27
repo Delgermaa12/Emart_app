@@ -1,4 +1,3 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 import 'forgot_password_page.dart';
 import 'home_screen.dart';
@@ -8,6 +7,7 @@ import 'auth_service.dart';
 import 'user_screen.dart';
 import 'baraatai_sags.dart';
 import 'ipoint_page.dart';
+import 'onboarding.dart';
 
 void main() => runApp(const EmartApp());
 
@@ -24,16 +24,16 @@ class EmartApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF9F9F9),
         useMaterial3: true,
       ),
-      initialRoute: '/login',
+      initialRoute: '/onboarding',
       routes: {
+        '/onboarding': (context) => const OnboardingScreen(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/forgot': (context) => const ForgotPasswordPage(),
         '/home': (context) => const HomeScreen(),
-        '/mypage': (context) => const MyPage(), // Changed from '/myprofile' to '/mypage'
+        '/mypage': (context) => MyPage(user: AuthService().currentUser!), // Changed from '/myprofile' to '/mypage'
         '/cart': (context) => const CartPage(), // Add CartPage route
         '/ipoint': (context) => const IpointPage(), // Add IpointPage route
-        // '/mainscreen': (context) => const MainScreen(), // Add MainScreen route if needed
       },
     );
   }

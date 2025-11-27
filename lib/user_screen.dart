@@ -1,10 +1,17 @@
+import 'package:emart_app/address_list_screen.dart';
+import 'package:emart_app/connect_card.dart';
+import 'package:emart_app/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'ipoint_page.dart';
 import 'change_pass_settings.dart';
+import 'feedback_screen.dart';
+import 'refund_account.dart';
+import 'coupon_screen.dart';
 
 class MyPage extends StatelessWidget {
-  const MyPage({super.key});
+  final User user;
+  MyPage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +75,6 @@ class MyPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // ⚡ AppBar, BottomNavigationBar устгасан тул зөвхөн body байна
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -85,7 +91,7 @@ class MyPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("О Дэлгэрмаа",
+                      Text(user.name,
                           style: GoogleFonts.notoSans(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 6),
@@ -115,19 +121,44 @@ class MyPage extends StatelessWidget {
 
             const Divider(height: 1),
             sectionTitle("Миний"),
-            buildListTile(Icons.confirmation_num_outlined, "Купон"),
+            buildListTile(Icons.confirmation_num_outlined, "Купон", onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CouponScreen()),
+              );
+            }),
             buildListTile(Icons.shopping_bag_outlined, "Худалдан авалт"),
             buildListTile(Icons.receipt_long_outlined, "Төлбөрийн баримт"),
-            buildListTile(Icons.location_on_outlined, "Хүргэлтийн хаяг"),
+            buildListTile(Icons.location_on_outlined, "Хүргэлтийн хаяг", onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AddressListScreen()),
+              );
+            }),
             buildListTile(Icons.credit_card_outlined, "Банкны карт"),
-            buildListTile(Icons.card_membership_outlined, "Ипойнт карт"),
-            buildListTile(Icons.account_balance_wallet_outlined, "Буцаалтын данс бүртгэл"),
+            buildListTile(Icons.card_membership_outlined, "Ипойнт карт", onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ConnectCardPage()),
+              );
+            }),
+            buildListTile(Icons.account_balance_wallet_outlined, "Буцаалтын данс бүртгэл", onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const RefundAccountScreen()),
+              );
+            }),
             buildListTile(Icons.document_scanner_outlined, "Ибаримт хялбар бүртгэл"),
             buildListTile(Icons.favorite_border, "Хадгалсан бараа"),
             const Divider(height: 1),
 
             sectionTitle("Бусад"),
-            buildListTile(Icons.chat_bubble_outline, "Санал хүсэлт"),
+            buildListTile(Icons.chat_bubble_outline, "Санал хүсэлт",
+              onTap:(){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FeedbackScreen()),
+                );}),
             buildListTile(
               Icons.language, "Хэл солих",
               onTap: () => showLanguageSelector(context),
